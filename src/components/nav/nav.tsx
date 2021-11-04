@@ -10,7 +10,6 @@ import Sidebar from '@src/components/sidebar/sidebar'
 const navigation = [
   { name: 'Add', href: '#', current: false },
   { name: 'Cancel', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
   { name: 'Reactivate', href: '#', current: false },
   { name: 'Change', href: '#', current: false },
 ]
