@@ -10,7 +10,10 @@ interface StepProps {
 const Step: React.FC<StepProps> = ({ onSubmit, title }) => {
   const [current, send] = useMachine(stepMachine, {
     actions: {
-      submit: (ctx) => onSubmit(ctx.value),
+      submit: (ctx) => {
+        console.log('CTX: ', ctx)
+        onSubmit(ctx.value)
+      },
     },
   })
 
@@ -39,8 +42,8 @@ const Step: React.FC<StepProps> = ({ onSubmit, title }) => {
         disabled={!editing}
         data-testid="input"
       />
-      <button type="button" disabled={!editing || invalid} data-testid="save-button">
-        Save
+      <button type="submit" disabled={!editing || invalid} data-testid="save-button">
+        Next / Save
       </button>
     </form>
   )

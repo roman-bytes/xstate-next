@@ -23,9 +23,18 @@ export const subscriptionMachine = Machine({
       },
       on: {
         NEXT: {
-          actions: send('NEXT', {
-            to: 'add',
-          }),
+          actions: [
+            (ctx, e) => console.log('e.payload', e.value),
+            send(
+              (ctx, e) => ({
+                type: 'NEXT',
+                value: e.value,
+              }),
+              {
+                to: 'add',
+              },
+            ),
+          ],
         },
       },
     },
