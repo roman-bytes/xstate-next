@@ -83,26 +83,24 @@ const Sidebar: React.FC<SideBarProps> = ({ isOpen, onClose, context }: SideBarPr
                       <>
                         {currentAddStep?.value === 'one' && (
                           <>
-                            <Step key="one" title="Step one" onSubmit={(value: any) => send('NEXT', { value })} />
-                            <button type="button" onClick={() => send('NEXT')}>
-                              Next
-                            </button>
+                            <Step
+                              key="one"
+                              title="Step one"
+                              onSubmit={(value: any) => {
+                                console.log('clickedddddd', value)
+                                send('NEXT', { value })
+                              }}
+                            />
                           </>
                         )}
                         {currentAddStep?.value === 'two' && (
                           <>
                             <Step key="two" title="Step two" onSubmit={(value: any) => send('NEXT', { value })} />
-                            <button type="button" onClick={() => send('NEXT')}>
-                              Next
-                            </button>
                           </>
                         )}
                         {currentAddStep?.value === 'three' && (
                           <>
                             <Step key="three" title="Step three" onSubmit={(value: any) => send('NEXT', { value })} />
-                            <button type="button" onClick={() => send('NEXT')}>
-                              Next
-                            </button>
                           </>
                         )}
                         {currentAddStep?.value === 'loading' && (
