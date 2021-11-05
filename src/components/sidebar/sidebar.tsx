@@ -16,10 +16,12 @@ interface SideBarProps {
 const Sidebar: React.FC<SideBarProps> = ({ isOpen, onClose, context }: SideBarProps) => {
   const [current, send] = useMachine(subscriptionMachine)
 
+  console.log('current', current)
   const { title } = context
   // const currentAddStep = current.children
   const currentAddStep = current?.children?.[`${title.toLowerCase()}`]?.getSnapshot()
 
+  console.log('currentAddStep', currentAddStep?.value)
   useEffect(() => {
     send(`${title.toUpperCase()}`)
   }, [])
@@ -80,13 +82,28 @@ const Sidebar: React.FC<SideBarProps> = ({ isOpen, onClose, context }: SideBarPr
                     {current.matches('add') && (
                       <>
                         {currentAddStep?.value === 'one' && (
-                          <Step key="one" title="Step one" onSubmit={(value: any) => send('NEXT', { value })} />
+                          <>
+                            <Step key="one" title="Step one" onSubmit={(value: any) => send('NEXT', { value })} />
+                            <button type="button" onClick={() => send('NEXT')}>
+                              Next
+                            </button>
+                          </>
                         )}
                         {currentAddStep?.value === 'two' && (
-                          <Step key="two" title="Step two" onSubmit={(value: any) => send('NEXT', { value })} />
+                          <>
+                            <Step key="two" title="Step two" onSubmit={(value: any) => send('NEXT', { value })} />
+                            <button type="button" onClick={() => send('NEXT')}>
+                              Next
+                            </button>
+                          </>
                         )}
                         {currentAddStep?.value === 'three' && (
-                          <Step key="three" title="Step three" onSubmit={(value: any) => send('NEXT', { value })} />
+                          <>
+                            <Step key="three" title="Step three" onSubmit={(value: any) => send('NEXT', { value })} />
+                            <button type="button" onClick={() => send('NEXT')}>
+                              Next
+                            </button>
+                          </>
                         )}
                         {currentAddStep?.value === 'loading' && (
                           <svg
