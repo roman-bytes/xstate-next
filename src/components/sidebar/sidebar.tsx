@@ -126,10 +126,47 @@ const Sidebar: React.FC<SideBarProps> = ({ isOpen, onClose, context }: SideBarPr
                     )}
                     {current.matches('cancel') && (
                       <>
-                        <AddFlow currentStep={currentAddStep} />
-                        <button className="bg-blue-800 text-white" type="button" onClick={() => send('NEXT')}>
-                          Next Step
-                        </button>
+                        {currentAddStep?.value === 'one' && (
+                          <>
+                            <Step
+                              key="one"
+                              title="Step one"
+                              onSubmit={(value: any) => {
+                                console.log('clickedddddd', value)
+                                send('NEXT', { value })
+                              }}
+                            />
+                          </>
+                        )}
+                        {currentAddStep?.value === 'two' && (
+                          <>
+                            <Step key="two" title="Step two" onSubmit={(value: any) => send('NEXT', { value })} />
+                          </>
+                        )}
+                        {currentAddStep?.value === 'three' && (
+                          <>
+                            <Step key="three" title="Step three" onSubmit={(value: any) => send('NEXT', { value })} />
+                          </>
+                        )}
+                        {currentAddStep?.value === 'loading' && (
+                          <svg
+                            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle className="opacity-25" cx={12} cy={12} r={10} stroke="#333" strokeWidth={4} />
+                            <path
+                              className="opacity-75"
+                              fill="#ffffff"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            />
+                          </svg>
+                        )}
+                        {currentAddStep?.value === 'success' && <h3 className="text-green-700">All Good!</h3>}
+                        {currentAddStep?.value === 'failure' && (
+                          <h3 className="text-red-800">Whoops something went wrrong</h3>
+                        )}
                       </>
                     )}
 

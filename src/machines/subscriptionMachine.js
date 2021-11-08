@@ -46,9 +46,17 @@ export const subscriptionMachine = Machine({
       },
       on: {
         NEXT: {
-          actions: send('NEXT', {
-            to: 'cancel',
-          }),
+          actions: [
+            send(
+              (ctx, e) => ({
+                type: 'NEXT',
+                value: e.value,
+              }),
+              {
+                to: 'cancel',
+              },
+            ),
+          ],
         },
       },
     },
